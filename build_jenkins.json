@@ -1,0 +1,15 @@
+freeStyleJob("Docker publish")
+{
+  description ("Simple Hello World")
+  triggers
+  {
+    scm('*/1 * * * *')
+  }
+    steps
+  {
+     shell ( "aws ecr get-login --region us-west-2 > docker-login.sh")
+     shell ( "chmod +x docker-login.sh && sudo ./docker-login.sh")
+     shell ( "sudo docker tag hello-world:latest 647177513724.dkr.ecr.us-west-2.amazonaws.com/skuchain-devops:latest")
+     shell ( "sudo docker push 647177513724.dkr.ecr.us-west-2.amazonaws.com/skuchain-devops:latest")
+  }
+}
