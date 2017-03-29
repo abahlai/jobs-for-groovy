@@ -1,0 +1,23 @@
+ freeStyleJob("Test BitBucket")
+{
+  description ("Simple Hello World")
+scm 
+{
+     git {
+         remote {
+              name("origin")
+              url("https://bitbucket.org/andriybahlai/hello-world-full/scr")
+              credentials("bitbucket")
+             }
+            branch("*/master")
+        }
+    }
+    triggers
+  {
+    scm('* * * * *')
+  }
+    steps
+  {
+     shell ( "echo done?")
+  }
+}
