@@ -1,15 +1,18 @@
-freeStyleJob("DockerPublish")
+ freeStyleJob("DockerPublish")
 {
   description ("Simple Hello World")
-  scm {
-    git {
-      remote {
-        url('https://github.com/nikotinik/php-hello-world.git')
-      }
-      branch('master')
+scm 
+{
+     git {
+         remote {
+              name("origin")
+              url("https://bitbucket.org/andriybahlai/hello-world-full/src")
+              credentials("bitbucket")
+             }
+            branch("*/master")
+        }
     }
-  }
-  triggers
+    triggers
   {
     scm('* * * * *')
   }
