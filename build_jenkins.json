@@ -1,12 +1,21 @@
-freeStyleJob("Docker publish")
+freeStyleJob("DockerPublish")
 {
   description ("Simple Hello World")
+  scm {
+    git {
+      remote {
+        url('https://github.com/nikotinik/php-hello-world.git')
+      }
+      branch('master')
+    }
+  }
   triggers
   {
-    scm('*/1 * * * *')
+    scm('* * * * *')
   }
     steps
   {
+     shell ( "sudo docker build -t hello-world .")
      shell ( "aws ecr get-login --region us-west-2 > docker-login.sh")
      shell ( "chmod +x docker-login.sh && sudo ./docker-login.sh")
      shell ( "sudo docker tag hello-world:latest 647177513724.dkr.ecr.us-west-2.amazonaws.com/skuchain-devops:latest")
