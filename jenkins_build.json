@@ -6,7 +6,7 @@ scm
      git {
          remote {
               name("origin")
-              url("https://bitbucket.org/andriybahlai/hello-world-full/src")
+              url("https://bitbucket.org/skuchaindev/edge-server/src")
               credentials("bitbucket")
              }
             branch("*/master")
@@ -18,10 +18,10 @@ scm
   }
     steps
   {
-     shell ( "sudo docker build -t hello-world .")
+     shell ( "sudo docker build -t egde-server .")
      shell ( "aws ecr get-login --region us-west-2 > docker-login.sh")
      shell ( "chmod +x docker-login.sh && sudo ./docker-login.sh")
-     shell ( "sudo docker tag hello-world:latest 647177513724.dkr.ecr.us-west-2.amazonaws.com/skuchain-devops:latest")
-     shell ( "sudo docker push 647177513724.dkr.ecr.us-west-2.amazonaws.com/skuchain-devops:latest")
+     shell ( "sudo docker tag edge-server:latest 647177513724.dkr.ecr.us-west-2.amazonaws.com/edge-server:latest")
+     shell ( "sudo docker push 647177513724.dkr.ecr.us-west-2.amazonaws.com/edge-server:latest")
   }
 }
